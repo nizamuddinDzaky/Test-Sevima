@@ -58,7 +58,6 @@
         })
 
         const input = document.getElementById("file-input");
-        // console.log(input);
 
         $(document).on('change', '#file-input', function(e){
             const image = document.getElementById("img-preview");
@@ -69,12 +68,9 @@
         })
         $(document).on('change', '.checkbox', function(){
             let _val = 0
-            console.log("asdasd");
 
             if($(this).is(":checked")) {
                 _val = 1
-                // var returnVal = confirm("Are you sure?");
-                // $(this).attr("checked", returnVal);
             }
             $('#'+$(this).data('id')).val(_val)
         })

@@ -16,15 +16,6 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use Kris\LaravelFormBuilder\Field;
 use Spatie\Permission\Models\Permission;
 
-/**
- *   0 => ""id_kain""
-    1 => ""kd_jns""
-    2 => ""kd_wrn""
-    3 => ""kd_stn""
-    4 => ""ktg""
-    5 => ""kd_kat""
- */
-
 class HomeController extends Controller
 {
 
