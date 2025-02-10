@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                
+
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-warning btn-user btn-block" id="btn-submit" data-loading-text="<i class='fas fa-circle-notch fa-spin'></i>"    >
-                                
+                                Register
                             </button>
                         </form>
                         <hr>
