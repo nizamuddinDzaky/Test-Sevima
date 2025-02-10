@@ -58,7 +58,7 @@ class HomeController extends Controller
     public function updateProfileSave(Request $request){
         try {
             DB::beginTransaction();
-            $configs = MConfig::whereIn('type', array_keys($request->all()))->get();
+            $configs = MConfig::whereIn('key', array_keys($request->all()))->get();
             $conf = clone $configs;
             $userId = Auth::user()->id;
             MUserConfig::where('user_id', $userId)
@@ -66,11 +66,11 @@ class HomeController extends Controller
             ->delete();
             $userConfigData = [];
             foreach ($configs as $key => $config) {
-                if(isset($request->all()[$config->type])){
-                    $value = $request->all()[$config->type];
-                    if($config->type == 'image'){
-                        $imageName = time().'.'.$request->image->extension();
-                        $request->image->move(public_path('profile'), $imageName);
+                if(isset($request->all()[$config->key])){
+                    $value = $request->all()[$config->key];
+                    if($config->key == 'photo_profile'){
+                        $imageName = time().'.'.$request->photo_profile->extension();
+                        $request->photo_profile->move(public_path('profile'), $imageName);
                         $value = 'profile/'.$imageName;
                     }
                     $userConfigData[] = [
@@ -87,7 +87,7 @@ class HomeController extends Controller
                 'url' => route('home')
             ];
 
-            return $this->success_response("Berhasil Membuat Account, Silahkan Periksa Email", $response, $request->all());
+            return $this->success_response("Berhasil Mengubah Account, Silahkan Periksa Email", $response, $request->all());
         } catch (\Exception $e) {
             DB::rollback();
             return $this->failed_response($e->getMessage());
