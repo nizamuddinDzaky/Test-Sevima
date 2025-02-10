@@ -40,7 +40,7 @@ class AuthController extends Controller
                 $response = [
                     'url' => route('home')
                 ];
-    
+
                 return $this->success_response("Login Success", $response, $request->all());
             }
 
@@ -63,9 +63,9 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password)
             ]);
             $token = Str::random(64);
-  
+
             UserVerify::create([
-                'user_id' => $createUser->id, 
+                'user_id' => $createUser->id,
                 'token' => $token
             ]);
             $data = [
@@ -73,7 +73,7 @@ class AuthController extends Controller
             ];
             Mail::to($request->email)->send(new SendEmail('emails.verification-account', 'Verify Account', $data));
             DB::commit();
-            
+
             $response = [
                 'url' => route('login')
             ];
@@ -88,12 +88,12 @@ class AuthController extends Controller
     public function verifyAccount($token)
     {
         $verifyUser = UserVerify::where('token', $token)->first();
-  
+
         $message = 'Sorry your email cannot be identified.';
-  
+
         if(!is_null($verifyUser) ){
             $user = $verifyUser->user;
-              
+
             if(!$user->is_email_verified) {
                 $verifyUser->user->is_email_verified = 1;
                 $verifyUser->user->save();
@@ -102,8 +102,17 @@ class AuthController extends Controller
                 $message = "Your e-mail is already verified. You can now login.";
             }
         }
-  
+
       return redirect()->route('login')->with('message', $message);
     }
 
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
