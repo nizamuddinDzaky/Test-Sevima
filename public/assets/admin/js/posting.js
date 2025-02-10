@@ -20,6 +20,13 @@ $(document).ready(function(){
         $('#modal-content').html(res.data)
         $('#modal').modal('show');
     })
+    $(document).on('change', '#file-input', function(e){
+        const image = document.getElementById("img-preview");
+        if (e.target.files.length) {
+            const src = URL.createObjectURL(e.target.files[0]);
+            image.src = src;
+        }
+    })
 
     $(document).on('submit', '#form-comment', async function (e) {
         let text = $(':input[type="submit"]').html();

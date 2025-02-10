@@ -59,13 +59,6 @@
 
         const input = document.getElementById("file-input");
 
-        $(document).on('change', '#file-input', function(e){
-            const image = document.getElementById("img-preview");
-            if (e.target.files.length) {
-                const src = URL.createObjectURL(e.target.files[0]);
-                image.src = src;
-            }
-        })
         $(document).on('change', '.checkbox', function(){
             let _val = 0
 
