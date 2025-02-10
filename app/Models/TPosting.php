@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class TPosting extends Model
 {
@@ -36,7 +37,8 @@ class TPosting extends Model
 
     public function like()
     {
-        return $this->hasMany(TPostingLike::class, 'posting_id');
+        return $this->hasMany(TPostingLike::class, 'posting_id')
+        ->where('user_id', Auth::user()->id);
     }
 
     public function comments()
