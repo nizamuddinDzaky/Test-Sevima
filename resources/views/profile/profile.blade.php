@@ -29,11 +29,6 @@
 
                         <div class="profile-stats">
 
-                            <ul>
-                                <li><span class="profile-stat-count">164</span> posts</li>
-                                <li><span class="profile-stat-count">188</span> followers</li>
-                                <li><span class="profile-stat-count">206</span> following</li>
-                            </ul>
                             <hr>
                             <div class="profile-bio">
 
